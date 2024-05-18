@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import data from "../../data.json";
-import { useLocation } from "react-router-dom";
+import { useLocation, NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
+
 export default function Shop() {
   const { pathname } = useLocation();
   const path = pathname.split("/")[1];
+  const [isactive, setIsactive] = useState(1);
   const [filterdata, setFilterdata] = useState(
     data.filter((item) => item.category === path)
   );
-
+ 
   return (
     <>
       <div className="shop__main__banner">
@@ -43,8 +45,9 @@ export default function Shop() {
             <button className="shop__filter__item">Newest</button>
             <button className="shop__filter__item">Oldest</button>
             <button
-              className="shop__filter__item"
+              className={`shop__filter__item ${isactive === 1 && "shop__filter__item__active"}`}
               onClick={() => {
+                setIsactive(1);
                 const sortedData = [...filterdata];
                 sortedData.sort((a, b) => a.price - b.price);
                 setFilterdata(sortedData);
@@ -53,8 +56,9 @@ export default function Shop() {
               Small to heigh Price
             </button>
             <button
-              className="shop__filter__item"
+              className={`shop__filter__item ${isactive === 2 && "shop__filter__item__active"}`}
               onClick={() => {
+                setIsactive(2);
                 const sortedData = [...filterdata];
                 sortedData.sort((a, b) => b.price - a.price);
                 setFilterdata(sortedData);
@@ -82,16 +86,27 @@ export default function Shop() {
   );
 }
 function ProductCard({ item }) {
+  const [isSVGClicked, setIsSVGClicked] = useState(false);
+  const handelSvgClick = (event) => {
+    event.stopPropagation();
+    setIsSVGClicked(!isSVGClicked);
+    window.scrollTo(0, 0);
+  };
+  console.log(handelSvgClick);
   return (
     <Link
       onClick={() => {
-        window.scrollTo(0, 0);
+        window.scrollTo(0 , 0);
       }}
       to={`${item.id}`}
       state={item}
       className="item__container__filter"
     >
-      <div className="product__frt__svg">
+      <div
+        className="product__frt__svg"
+
+        onClick={handelSvgClick}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
