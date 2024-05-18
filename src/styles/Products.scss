@@ -169,6 +169,15 @@
 .shop__filter__item:hover {
   border: 1px solid #eb4a4a;
   cursor: pointer;
+  background-color: #eb4a4a;
+  color: white;
+  transition: all 0.5s ease;
+}
+.shop__filter__item__active {
+  border: 1px solid #eb4a4a;
+  cursor: pointer;
+  background-color: #eb4a4a;
+  color: white;
   transition: all 0.5s ease;
 }
 .shop__price__range {
