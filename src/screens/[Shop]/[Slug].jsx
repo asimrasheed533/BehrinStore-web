@@ -23,7 +23,7 @@ export default function Detail() {
         <div className="detial__container__col">
           <div className="deatail__imgs__wraper">
             {state.images.map((img, index) => (
-              <div className="deatail__imgs__entry">
+              <div key={index} className="deatail__imgs__entry">
                 <img src={img} alt="women" />
               </div>
             ))}
