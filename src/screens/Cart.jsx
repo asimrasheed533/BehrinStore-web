@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { removeToCart } from "../features/cartSlice";
+import { useDispatch } from "react-redux";
 export default function Cart() {
   const navigate = useNavigate();
+
   const cart = useSelector((state) => state.cart.items);
   const totalPrice = useSelector((state) => state.cart.totalPrice);
   const [istext, setIstext] = useState("");
   const [istexterror, setIstexterror] = useState("");
+  console.log("cart", cart);
 
   function handelSubmit(e) {
     e.preventDefault();
@@ -71,7 +75,8 @@ export default function Cart() {
 }
 
 function CartItem({ cart }) {
-  console.log("cart i nitem", cart);
+  // console.log("cart i nitem", cart);
+  const dispatch = useDispatch();
   return (
     <div className="cart__container__left__item">
       <div className="cart__container__left__item__col">
@@ -90,13 +95,20 @@ function CartItem({ cart }) {
             <div className="cart__item__Heading">Item Price</div>
             <div className="cart__item__total__price">Rs: {cart.price}</div>
           </div>
+          <div className="cart__item__price">
+            <div className="cart__item__Heading">Item Quantity</div>
+            <div className="cart__item__total__price">{cart.quantity}</div>
+          </div>
         </div>
       </div>
       <div className="cart__container__left__item__col">
         {/* <div className="cart__container__left__item__col__price">
           Rs.999f049
         </div> */}
-        <div className="trach__item">
+        <div
+          onClick={() => dispatch(removeToCart(cart))}
+          className="trach__item"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="24"

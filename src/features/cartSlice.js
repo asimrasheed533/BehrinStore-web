@@ -30,7 +30,7 @@ export const cartSlice = createSlice({
     },
     removeToCart(state, action) {
       const newitem = action.payload;
-      const existingitem = state.Item.find((item) => item.id === newitem.id);
+      const existingitem = state.items.find((item) => item.id === newitem.id);
       if (existingitem) {
         if (existingitem.quantity === 1) {
           state.items = state.items.filter((item) => item.id !== id);
