@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useLayoutEffect, useState } from "react";
 import data from "../../data.json";
 import { useLocation, NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -7,10 +7,10 @@ export default function Shop() {
   const { pathname } = useLocation();
   const path = pathname.split("/")[1];
   const [isactive, setIsactive] = useState(1);
-  const [filterdata, setFilterdata] = useState(
-    data.filter((item) => item.category === path)
-  );
- 
+  const [filterdata, setFilterdata] = useState(null);
+  useLayoutEffect(() => {
+    setFilterdata(data.filter((item) => item.category === path));
+  }, [pathname]);
   return (
     <>
       <div className="shop__main__banner">
@@ -39,15 +39,45 @@ export default function Shop() {
       <div className="shop__products__container">
         <div className="shop__products__filter__wraper">
           <div className="shop__filter__heading">
-            Total Products: <span>230</span>
+            Total Products: <span>{filterdata?.length}</span>
           </div>
           <div className="shop__filter__items">
-            <button className="shop__filter__item">Newest</button>
-            <button className="shop__filter__item">Oldest</button>
             <button
-              className={`shop__filter__item ${isactive === 1 && "shop__filter__item__active"}`}
+              className={`shop__filter__item ${
+                isactive === 0 && "shop__filter__item__active"
+              }`}
+              onClick={() => {
+                setIsactive(0);
+                const sortedData = [...filterdata];
+                sortedData.sort(
+                  (a, b) => new Date(b.published_at) - new Date(a.published_at)
+                );
+                setFilterdata(sortedData);
+              }}
+            >
+              Newest
+            </button>
+            <button
+              className={`shop__filter__item ${
+                isactive === 1 && "shop__filter__item__active"
+              }`}
               onClick={() => {
                 setIsactive(1);
+                const sortedData = [...filterdata];
+                sortedData.sort(
+                  (a, b) => new Date(a.published_at) - new Date(b.published_at)
+                );
+                setFilterdata(sortedData);
+              }}
+            >
+              Oldest
+            </button>
+            <button
+              className={`shop__filter__item ${
+                isactive === 3 && "shop__filter__item__active"
+              }`}
+              onClick={() => {
+                setIsactive(3);
                 const sortedData = [...filterdata];
                 sortedData.sort((a, b) => a.price - b.price);
                 setFilterdata(sortedData);
@@ -56,9 +86,11 @@ export default function Shop() {
               Small to heigh Price
             </button>
             <button
-              className={`shop__filter__item ${isactive === 2 && "shop__filter__item__active"}`}
+              className={`shop__filter__item ${
+                isactive === 4 && "shop__filter__item__active"
+              }`}
               onClick={() => {
-                setIsactive(2);
+                setIsactive(4);
                 const sortedData = [...filterdata];
                 sortedData.sort((a, b) => b.price - a.price);
                 setFilterdata(sortedData);
@@ -77,7 +109,7 @@ export default function Shop() {
           </div>
         </div>
         <div className="shop__products__items">
-          {filterdata.map((item) => (
+          {filterdata?.map((item) => (
             <ProductCard item={item} key={item.id} />
           ))}
         </div>
@@ -96,17 +128,13 @@ function ProductCard({ item }) {
   return (
     <Link
       onClick={() => {
-        window.scrollTo(0 , 0);
+        window.scrollTo(0, 0);
       }}
       to={`${item.id}`}
       state={item}
       className="item__container__filter"
     >
-      <div
-        className="product__frt__svg"
-
-        onClick={handelSvgClick}
-      >
+      <div className="product__frt__svg" onClick={handelSvgClick}>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
