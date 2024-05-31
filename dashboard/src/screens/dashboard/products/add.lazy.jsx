@@ -1,31 +1,21 @@
 import { Input, Select, Textarea } from "components";
-
-import ImageUploaderSingle from "../../../components/ImageUploaderSingle";
 import { Link, useNavigate } from "react-router-dom";
 import axios from "../../../utils/axios";
 import { useBackLocation } from "global";
 import { useState } from "react";
 import { categories } from "../../../utils/constants";
-import Avatar from "../../../components/Avatar";
 
 export default function ProductAdd() {
   const navigate = useNavigate();
   const backLocation = useBackLocation();
 
   const [name, setName] = useState("");
-
   const [brand, setBrand] = useState("");
-
   const [description, setDescription] = useState("");
-
   const [time, setTime] = useState("");
-
   const [stock, setStock] = useState("");
-
   const [category, setCategory] = useState({});
-
   const [image, setImage] = useState("");
-  // const [selectedImage, setSelectedImage] = useState(initialImage);
 
   function handleSubmit(e) {
     axios
@@ -46,12 +36,6 @@ export default function ProductAdd() {
         console.error(err);
       });
   }
-  // const isImageChanged =
-  // typeof selectedImage === "object" && selectedImage !== initialImage;
-  // if(isImageChanged){
-  //   const formData = new FormData();
-  //   formData.append("file", selectedImage);
-  // }
   return (
     <div className="product__form">
       <div className="product__form__col">
