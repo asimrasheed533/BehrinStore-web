@@ -95,9 +95,9 @@ export default function Header({ setSidebarOpen }) {
               className="container__main__header__right__panel__main__img"
             />
             <div className="container__main__header__right__panel__main__label">
-              {User?.name?.length > 20
-                ? User?.name.substring(0, 20) + "..."
-                : User?.name}
+              {user?.name?.length > 20
+                ? user?.name.substring(0, 20) + "..."
+                : user?.name}
             </div>
             <ChevronDown size={20} color="currentColor" />
           </button>
