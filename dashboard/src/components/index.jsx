@@ -20,7 +20,6 @@ const TableEntryViewButton = lazy(() => import("./TableEntryViewButton"));
 const Chart = lazy(() => import("./Chart"));
 const DashboardOrderEntry = lazy(() => import("./DashboardOrderEntry"));
 const DashboardStartEntry = lazy(() => import("./DashboardStartEntry"));
-const OrderDetailsCard = lazy(() => import("./OrderDetailsCard"));
 const OrderProductsCard = lazy(() => import("./OrderProductsCard"));
 
 export {
@@ -45,5 +44,4 @@ export {
   DashboardOrderEntry,
   DashboardStartEntry,
   OrderProductsCard,
-  OrderDetailsCard,
 };
