@@ -33,7 +33,7 @@ export default function CategorieAdd() {
         <Link
           to={backLocation}
           onClick={() => {
-            axios.post("categories", {
+            axios.post("categories/add", {
               name,
               img: image,
             });
