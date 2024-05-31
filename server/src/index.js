@@ -6,7 +6,6 @@ const category = require("./router/categories");
 const product = require("./router/Products");
 const dotenv = require("dotenv");
 const morgan = require("morgan");
-const verifyToken = require("./middleware/auth");
 
 dotenv.config();
 
@@ -18,15 +17,6 @@ const port = process.env.PORT || 9000;
 app.use(express.json());
 app.use(cors());
 app.use(morgan("dev"));
-
-// for every get request we will check if the token is valid
-
-app.use("/api", (req, res, next) => {
-  if (req.method === "GET") {
-    verifyToken(req, res, next);
-  }
-  next();
-});
 
 // db config
 monogoose.connect(process.env.MONGO_URL).then(() => {

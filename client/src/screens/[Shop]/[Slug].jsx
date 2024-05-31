@@ -129,6 +129,7 @@ export default function Detail() {
               )
             }
             className="add__cart__btn"
+            disabled={!size}
           >
             ADD TO CADT
           </button>

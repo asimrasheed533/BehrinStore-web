@@ -1,9 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const mailer = require("../utils/mailer");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
-const auth = require("../middleware/auth");
 const generateOTP = () => {
   return Math.floor(1000 + Math.random() * 9000);
 };
@@ -54,12 +52,6 @@ router.post("/login", async (req, res) => {
     if (!isMatch) {
       return res.status(400).json({ error: "Invalid credentials" });
     }
-    //jwt token
-    const token = jwt.sign(
-      { user_id: user._id, email },
-      process.env.TOKEN_KEY,
-      { expiresIn: "2h" }
-    );
 
     // Send the response
     return res.status(200).json(token);
@@ -93,28 +85,6 @@ router.post("/register", async (req, res) => {
   }
 });
 
-router.post("/forgot", async (req, res) => {
-  try {
-    const { email } = req.body;
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).send("User not found");
-    }
-    const otp = generateOTP();
-    user.otp = otp;
-    await user.save();
-    const sendotp = await mailer.sendMail(email, otp);
-
-    if (!sendotp) {
-      return res.status(200).send("email did not send");
-    }
-    return res.status(200).send("OTP sent to email");
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ error: "Something went wrong" });
-  }
-});
-
 router.put("/:id", async (req, res) => {
   try {
     const updateUser = await User.findByIdAndUpdate(req.params.id, {
@@ -134,15 +104,6 @@ router.delete("/:id", async (req, res) => {
   try {
     const deleteUser = await User.findByIdAndDelete(req.params.id);
     return res.send(deleteUser);
-  } catch (err) {
-    console.log(err);
-    return res.status(500).json({ error: "Something went wrong" });
-  }
-});
-
-router.post("/verify", auth, async (req, res) => {
-  try {
-    return res.send("User verified");
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Something went wrong" });
