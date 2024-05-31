@@ -1,7 +1,7 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const router = express.Router();
-const jwt = require("jsonwebtoken");
+
 const generateOTP = () => {
   return Math.floor(1000 + Math.random() * 9000);
 };
@@ -51,10 +51,11 @@ router.post("/login", async (req, res) => {
     const isMatch = password === user.password;
     if (!isMatch) {
       return res.status(400).json({ error: "Invalid credentials" });
+    } else {
+      return res.json({
+        message: "User logged in successfully",
+      });
     }
-
-    // Send the response
-    return res.status(200).json(token);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Something went wrong" });
