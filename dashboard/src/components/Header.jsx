@@ -119,6 +119,7 @@ export default function Header({ setSidebarOpen }) {
                 </Link>
                 <Link
                   to="/"
+                  onClick={() => setUser(null)}
                   replace={true}
                   className="container__main__header__right__panel__content__entry"
                 >

@@ -6,6 +6,7 @@ import { useState } from "react";
 import { categories } from "../../../utils/constants";
 
 export default function ProductAdd() {
+  const [selectedImage, setSelectedImage] = useState();
   const navigate = useNavigate();
   const backLocation = useBackLocation();
 
@@ -81,19 +82,36 @@ export default function ProductAdd() {
         <div className="product__form__col__panel">
           <div className="product__form__col__panel__heading">Image</div>
           <div className="popup__wrapper__card__header__img">
-            <img
-              // src={
-              //   typeof selectedImage === "object"
-              //     ? URL.createObjectURL(selectedImage)
-              //     : selectedImage
-              // }
-              alt="Upload Icon"
-            />
+            <img src={image} alt="Upload Icon" />
             <label
               className="popup__wrapper__card__header__svg"
               htmlFor="image-ipload"
             >
-              <input type="file" accept="image/*" id="image-ipload" />
+              <input
+                type="file"
+                accept="image/*"
+                id="image-ipload"
+                onChange={(e) => {
+                  const file = e.target.files[0];
+
+                  if (!file) {
+                    return;
+                  }
+
+                  // max file size 1mb
+                  if (file.size > 1024 * 1024) {
+                    alert("File size should be less than 1mb");
+                    return;
+                  }
+
+                  const reader = new FileReader();
+                  reader.onloadend = () => {
+                    setSelectedImage(reader.result);
+                    setImage(reader.result);
+                  };
+                  reader.readAsDataURL(file);
+                }}
+              />
               <svg
                 width="18"
                 height="18"

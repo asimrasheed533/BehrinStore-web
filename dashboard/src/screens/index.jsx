@@ -45,12 +45,6 @@ export default function Index() {
           }
         }}
       >
-        {/* <img
-          loading="lazy"
-          src={logo}
-          alt="logo"
-          className="login__container__form__logo"
-        /> */}
         <LoginInput
           label="Email"
           placeholder="Enter email"
