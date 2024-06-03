@@ -31,10 +31,9 @@ router.get("/:id", async (req, res) => {
 });
 router.post("/add", async (req, res) => {
   try {
-    const imagePath = uploadImage(req.body.img, req.body.name);
     const category = new Category({
       name: req.body.name,
-      img: imagePath,
+      img: req.body.img,
     });
     await category.save();
     res.send(category);
@@ -46,13 +45,12 @@ router.post("/add", async (req, res) => {
 
 router.put("/:id", async (req, res) => {
   try {
-    const imagePath = uploadImage(req.body.img, req.body.name);
-    const category = await Category.findByIdAndUpdate(req.params.id, {
+    const updatecategory = await Category.findByIdAndUpdate(req.params.id, {
       name: req.body.name,
-      img: imagePath,
+      img: req.body.img,
     });
-    await category.save();
-    return res.send(category);
+    await updatecategory.save();
+    return res.send(updatecategory);
   } catch (err) {
     console.log(err);
     return res.status(500).json({ error: "Something went wrong" });
@@ -61,10 +59,11 @@ router.put("/:id", async (req, res) => {
 
 router.delete("/:id", async (req, res) => {
   try {
-    const category = await Category.findByIdAndDelete(req.params.id);
-    return res.send(category);
+    const deletecategory = await Category.findByIdAndDelete(req.params.id);
+    return res.send(deletecategory);
   } catch (err) {
     console.log(err);
+    return res.status(500).json({ error: "Something went wrong" });
   }
 });
 

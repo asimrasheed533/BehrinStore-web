@@ -37,7 +37,7 @@ export default function CategorieAdd() {
         />
         <div className="product__form__col__panel__heading">Image</div>
         <div className="popup__wrapper__card__header__img">
-          <img src={image} alt="" />
+          <img src={image} alt="upload img" />
 
           <label className="popup__wrapper__card__header__svg">
             <input

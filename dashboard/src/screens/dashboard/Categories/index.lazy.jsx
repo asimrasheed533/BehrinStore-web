@@ -54,7 +54,7 @@ export default function Categories() {
         </div>
         <div className="container__main__content__listing__table__content">
           {category.map((item) => (
-            <TableEntry item={item} key={item._id} />
+            <TableEntry item={item} key={item._id} getData={getData} />
           ))}
         </div>
       </div>
@@ -71,7 +71,11 @@ function TableEntry({ item }) {
           state={{ ...item }}
         />
         <TableEntryDeleteButton
-          onClick={() => axios.delete(`categories/${item?._id}`)}
+          onClick={() => {
+            axios.delete(`categories/${item?._id}`).then(() => {
+              getData();
+            });
+          }}
         />
       </div>
       <TableEntryText>{item?.name}</TableEntryText>
