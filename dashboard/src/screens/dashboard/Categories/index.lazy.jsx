@@ -9,22 +9,12 @@ import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "../../../utils/axios";
 import { useLocation } from "react-router-dom";
+import useQuery from "../../../utils/useQuery";
+import Loading from "../../../layouts/loading";
 
 export default function Categories() {
   const location = useLocation();
-  const [category, setCategory] = useState([]);
-  const [loading, setLoading] = useState(true);
-
-  const getData = () => {
-    setLoading(true);
-    axios.get("categories").then((res) => {
-      setCategory(res.data);
-      setLoading(false);
-    });
-  };
-  useEffect(() => {
-    getData();
-  }, []);
+  const { data: category, isLoading: loading, mutate } = useQuery("categories");
 
   return (
     <div className="container__main__content__listing">
@@ -53,9 +43,13 @@ export default function Categories() {
           </div>
         </div>
         <div className="container__main__content__listing__table__content">
-          {category.map((item) => (
-            <TableEntry item={item} key={item._id} getData={getData} />
-          ))}
+          {loading ? (
+            <Loading dashboard />
+          ) : (
+            category.map((item) => (
+              <TableEntry item={item} key={item._id} getData={mutate} />
+            ))
+          )}
         </div>
       </div>
     </div>

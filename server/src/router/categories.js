@@ -1,6 +1,5 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const uploadImage = require("../uploadImage");
 
 const schema = new mongoose.Schema({
   name: String,
@@ -12,7 +11,7 @@ const router = express.Router();
 
 router.get("/", async (req, res) => {
   try {
-    const category = await Category.find();
+    const category = await Category.find().lean();
     return res.json(category);
   } catch (err) {
     console.log(err);

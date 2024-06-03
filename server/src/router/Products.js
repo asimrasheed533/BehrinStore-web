@@ -1,25 +1,12 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const productSchema = require("../model/product");
 
-const schema = new mongoose.Schema({
-  name: String,
-  brand: String,
-  price: Number,
-  img: String,
-  time: String,
-  stock: Number,
-  category: String,
-  description: String,
-  isFeatured: Boolean,
-  isActive: Boolean,
-  ingeredients: Array,
-});
-
-const Product = mongoose.model("Products", schema);
+const Product = mongoose.model("Products", productSchema);
 const router = express.Router();
 router.get("/", async (req, res) => {
   try {
-    const products = await Product.find();
+    const products = await Product.find().lean();
     return res.json(products);
   } catch (err) {
     console.log(err);

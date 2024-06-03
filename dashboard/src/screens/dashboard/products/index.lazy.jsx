@@ -13,11 +13,12 @@ import { TableEntryDescription } from "../../../components";
 import axios from "../../../utils/axios";
 import { useLocation } from "react-router-dom";
 import { getCategoryName } from "../../../utils/constants";
+import useQuery from "../../../utils/useQuery";
 
 export default function Products() {
   const location = useLocation();
-  const [products, setProducts] = useState([]);
-  const [loading, setLoading] = useState(true);
+
+  const { data: products, isLoading: loading, mutate } = useQuery("products");
 
   const [query, setQuery] = useState("");
 
@@ -29,18 +30,6 @@ export default function Products() {
         product.category.toLowerCase().includes(query.toLowerCase())
       );
     });
-  }, []);
-
-  const getData = () => {
-    setLoading(true);
-    axios.get("products").then((res) => {
-      setProducts(res.data);
-      setLoading(false);
-    });
-  };
-
-  useEffect(() => {
-    getData();
   }, []);
 
   return (
@@ -95,7 +84,7 @@ export default function Products() {
               <TableEntry
                 key={product._id}
                 product={product}
-                getData={getData}
+                getData={mutate}
               />
             ))
           )}
