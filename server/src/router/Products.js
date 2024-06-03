@@ -6,6 +6,7 @@ const schema = new mongoose.Schema({
   brand: String,
   price: Number,
   img: String,
+  time: String,
   stock: Number,
   category: String,
   description: String,

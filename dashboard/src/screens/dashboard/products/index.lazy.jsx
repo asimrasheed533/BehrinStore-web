@@ -74,7 +74,7 @@ export default function Products() {
             Brand
           </div>
           <div className="container__main__content__listing__table__header__entry">
-            Time to cook
+            Time
           </div>
 
           <div className="container__main__content__listing__table__header__entry">
