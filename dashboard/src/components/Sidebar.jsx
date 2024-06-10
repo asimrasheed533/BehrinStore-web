@@ -1,5 +1,5 @@
 import { Link, NavLink } from "router";
-import { sidebarCategories, sidebarEnteries } from "global";
+import { sidebarcategories, sidebarEnteries } from "global";
 
 import { Fragment } from "react";
 import { X } from "react-feather";
@@ -25,7 +25,7 @@ export default function Sidebar({ setSidebarOpen }) {
         </button>
       </div>
       <div className="container__sidebar__content">
-        {sidebarCategories.map((category) => (
+        {sidebarcategories.map((category) => (
           <Fragment key={category}>
             {category === "" ? (
               sidebarEnteries

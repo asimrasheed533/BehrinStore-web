@@ -10,7 +10,7 @@ export function useBackLocation() {
 
 export const userAtom = atomWithStorage("user", null);
 
-export const sidebarCategories = ["", "Settings"];
+export const sidebarcategories = ["", "Settings"];
 
 export const sidebarEnteries = [
   {
@@ -81,7 +81,7 @@ export const sidebarEnteries = [
         <path d="M9.92686 4.06214C9.92686 3.52898 9.90148 2.99582 9.92686 2.43728C10.003 1.26942 10.9932 0.203105 12.1357 0.025386C12.288 -2.32475e-06 12.4657 0 12.618 0C13.5066 0 14.4206 0 15.3092 0C16.7817 0 18.0004 1.21864 18.0004 2.69116C18.0004 3.57976 18.0004 4.49374 18.0004 5.38233C18.0004 6.90563 16.8071 8.09888 15.3092 8.12427C14.3952 8.12427 13.5066 8.12427 12.5926 8.12427C11.2471 8.09888 10.1046 7.13413 9.92686 5.81393C9.87609 5.23 9.92686 4.64607 9.92686 4.06214Z" />
       </svg>
     ),
-    name: "Categories",
+    name: "categories",
     path: "/dashboard/categories",
   },
 ];
