@@ -12,7 +12,7 @@ import { useLocation } from "react-router-dom";
 import useQuery from "../../../utils/useQuery";
 import Loading from "../../../layouts/loading";
 
-export default function Categories() {
+export default function categories() {
   const location = useLocation();
   const { data: category, isLoading: loading, mutate } = useQuery("categories");
 
