@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 export default function Shop() {
   const { pathname } = useLocation();
   const path = pathname.split("/")[1];
-  const [isactive, setIsactive] = useState(1);
+  const [isactive, setIsactive] = useState(0);
   const [filterdata, setFilterdata] = useState(null);
   useLayoutEffect(() => {
     setFilterdata(data.filter((item) => item.category === path));
@@ -99,14 +99,14 @@ export default function Shop() {
               Heigh to Samall Price
             </button>
           </div>
-          <div className="shop__price__range">
+          {/* <div className="shop__price__range">
             <div className="shop__price__range__heading">Price Range</div>
             <div className="price__entry">
               <div className="price__entry__text">0 Min</div>
               <div className="price__entry__text">40000 Max</div>
             </div>
             <input className="shop__price__range__input" type="range" />
-          </div>
+          </div> */}
         </div>
         <div className="shop__products__items">
           {filterdata?.map((item) => (
