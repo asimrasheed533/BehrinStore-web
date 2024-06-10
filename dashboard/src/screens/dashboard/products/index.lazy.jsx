@@ -62,9 +62,6 @@ export default function Products() {
           <div className="container__main__content__listing__table__header__entry">
             Brand
           </div>
-          <div className="container__main__content__listing__table__header__entry">
-            Time
-          </div>
 
           <div className="container__main__content__listing__table__header__entry">
             Stock
@@ -138,9 +135,6 @@ function TableEntry({ product, getData }) {
       </TableEntryText>
       <TableEntryText className="container__main__content__listing__table__content__list__entry">
         {product.brand}
-      </TableEntryText>
-      <TableEntryText className="container__main__content__listing__table__content__list__entry">
-        {product.time}
       </TableEntryText>
 
       <TableEntryText className="container__main__content__listing__table__content__list__entry">

@@ -13,7 +13,7 @@ export default function ProductAdd() {
   const [name, setName] = useState("");
   const [brand, setBrand] = useState("");
   const [description, setDescription] = useState("");
-  const [time, setTime] = useState("");
+
   const [stock, setStock] = useState("");
   const [category, setCategory] = useState({});
   const [image, setImage] = useState("");
@@ -24,7 +24,6 @@ export default function ProductAdd() {
         name,
         brand,
         description,
-        time,
         stock,
         category: category.value,
         img: image,
@@ -64,13 +63,7 @@ export default function ProductAdd() {
         </div>
         <div className="product__form__col__panel">
           <div className="product__form__col__panel__heading">Pricing</div>
-          <Input
-            type="text"
-            label="Time to cook"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            placeholder="Enter time to cook"
-          />
+
           <Input
             type="number"
             label="Enter Stock"
