@@ -20,6 +20,7 @@ export default function Index() {
               window.scrollTo({ top: 0, behavior: "smooth" });
             }}
             to={`/${category.name}`}
+            state={{ id: category._id }}
             className="categories__item"
             key={category._id}
           >

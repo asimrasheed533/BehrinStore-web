@@ -20,7 +20,7 @@ export default function ProductEdit() {
   const [time, setTime] = useState("");
 
   const [category, setCategory] = useState({});
-
+  const [price, setPrice] = useState("");
   const [image, setImage] = useState("");
   const [selectedImage, setSelectedImage] = useState();
 
@@ -33,6 +33,7 @@ export default function ProductEdit() {
       setDescription(state.description);
       setTime(state.time);
       setStock(state.stock);
+      setPrice(state.price);
       setCategory({
         label: getCategoryName(state.category),
         value: state.category,
@@ -43,6 +44,15 @@ export default function ProductEdit() {
 
   function handleSubmit(e) {
     console.log("submitting");
+    console.log("subit data", {
+      name,
+      brand,
+      description,
+      time,
+      category: category.value,
+      img: image,
+      price,
+    });
     axios
       .put("products/" + state._id, {
         name,
@@ -51,6 +61,7 @@ export default function ProductEdit() {
         time,
         category: category.value,
         img: image,
+        price,
       })
       .then((res) => {
         alert("Product updated successfully");
@@ -87,31 +98,24 @@ export default function ProductEdit() {
           />
         </div>
         <div className="product__form__col__panel">
-          <div className="product__form__col__panel__heading">Time To Cook</div>
-          <Input
-            type="text"
-            label="Time to cook"
-            value={time}
-            onChange={(e) => setTime(e.target.value)}
-            placeholder="Enter time to cook"
-          />
           <Input
             type="number"
-            label="Add Stock"
+            label="Edit Stock"
             value={stock}
             onChange={(e) => setStock(e.target.value)}
             placeholder="Enter Stock"
           />
+          <Input
+            type="number"
+            label="Edit Price"
+            value={price}
+            onChange={(e) => setPrice(e.target.value)}
+            placeholder="Enter price"
+          />
         </div>
         <div className="product__form__col__panel">
           <div className="product__form__col__panel__heading">Media</div>
-          {/* <ImageUploaderSingle
-            label="Image"
-            value={image}
-            onChange={(e) => {
-              setImage(e);
-            }}
-          /> */}
+
           <div className="popup__wrapper__card__header__img">
             <img src={image} alt="Upload Icon" />
             <label

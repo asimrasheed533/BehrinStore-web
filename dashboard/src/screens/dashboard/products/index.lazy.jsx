@@ -26,6 +26,7 @@ export default function Products() {
     return products.filter((product) => {
       return (
         product.name.toLowerCase().includes(query.toLowerCase()) ||
+        product.price.toString().includes(query) ||
         product.brand.toLowerCase().includes(query.toLowerCase()) ||
         product.category.toLowerCase().includes(query.toLowerCase())
       );
@@ -58,6 +59,9 @@ export default function Products() {
           </div>
           <div className="container__main__content__listing__table__header__entry">
             Name
+          </div>
+          <div className="container__main__content__listing__table__header__entry">
+            Price
           </div>
           <div className="container__main__content__listing__table__header__entry">
             Brand
@@ -132,6 +136,9 @@ function TableEntry({ product, getData }) {
       <TableEntryImage src={product?.img} />
       <TableEntryText className="container__main__content__listing__table__content__list__entry">
         {product.name}
+      </TableEntryText>
+      <TableEntryText className="container__main__content__listing__table__content__list__entry">
+        {product.price}
       </TableEntryText>
       <TableEntryText className="container__main__content__listing__table__content__list__entry">
         {product.brand}

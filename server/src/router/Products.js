@@ -49,6 +49,7 @@ router.post("/add", async (req, res) => {
       description: req.body.description,
       isFeatured: req.body.isFeatured,
       isActive: req.body.isActive,
+      price: req.body.price,
     });
     await product.save();
     return res.json(product);
@@ -70,6 +71,7 @@ router.put("/:id", async (req, res) => {
       description: req.body.description,
       isFeatured: req.body.isFeatured,
       isActive: req.body.isActive,
+      price: req.body.price,
     });
 
     return res.json(updateproduct);

@@ -1,16 +1,21 @@
 import React, { useEffect, useLayoutEffect, useState } from "react";
-import data from "../../data.json";
+
 import { useLocation, NavLink } from "react-router-dom";
 import { Link } from "react-router-dom";
+import useQuery from "../../utils/useQuery";
 
 export default function Shop() {
-  const { pathname } = useLocation();
+  const { pathname, state } = useLocation();
+
   const path = pathname.split("/")[1];
   const [isactive, setIsactive] = useState(0);
   const [filterdata, setFilterdata] = useState(null);
+  const { data } = useQuery("/products");
+  console.log("data", data);
   useLayoutEffect(() => {
-    setFilterdata(data.filter((item) => item.category === path));
-  }, [pathname]);
+    setFilterdata(data.filter((item) => item.category === state.id));
+  }, [data, state.id]);
+  console.log("filterdata", filterdata);
   return (
     <>
       <div className="shop__main__banner">
@@ -118,13 +123,6 @@ export default function Shop() {
   );
 }
 function ProductCard({ item }) {
-  const [isSVGClicked, setIsSVGClicked] = useState(false);
-  const handelSvgClick = (event) => {
-    event.stopPropagation();
-    setIsSVGClicked(!isSVGClicked);
-    window.scrollTo(0, 0);
-  };
-  console.log(handelSvgClick);
   return (
     <Link
       onClick={() => {
@@ -134,7 +132,7 @@ function ProductCard({ item }) {
       state={item}
       className="item__container__filter"
     >
-      <div className="product__frt__svg" onClick={handelSvgClick}>
+      <div className="product__frt__svg">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"
@@ -151,9 +149,9 @@ function ProductCard({ item }) {
         </svg>
       </div>
       <div className="item__filter__container__img">
-        <img src={item.images[0]} alt="fashion_style" />
+        <img src={item.img} alt="fashion_style" />
       </div>
-      <div className="item__container__name">{item.title}</div>
+      <div className="item__container__name">{item.name}</div>
       <div className="item__container__price">Rs:{item.price}</div>
     </Link>
   );
