@@ -1,54 +1,34 @@
 import { SliderBanner } from "@components";
-import men from "../assets/mencate.png";
-import womencate from "../assets/womencate.png";
-import salecate from "../assets/salecate.png";
 import salebanner from "../assets/salebanner.png";
 import pr1 from "../assets/pr-01.png";
 import pr2 from "../assets/pr-02.png";
 import pr3 from "../assets/pr-03.png";
 import { Link } from "react-router-dom";
+import useQuery from "../utils/useQuery";
+
 export default function Index() {
+  const { data: categories, isLoading } = useQuery("/categories");
+  console.log(categories, isLoading);
   return (
     <>
       <SliderBanner />
       <div className="cate__line" />
       <div className="categories__container">
-        <Link
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-          to="/men"
-          className="categories__item"
-        >
-          <div className="categories__item__img">
-            <img src={men} alt="fashion_style" />
-          </div>
-          <div className="categories__item__name">Men</div>
-        </Link>
-        <Link
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-          to="/women"
-          className="categories__item"
-        >
-          <div className="categories__item__img">
-            <img src={womencate} alt="fashion_style" />
-          </div>
-          <div className="categories__item__name">Women</div>
-        </Link>
-        <Link
-          onClick={() => {
-            window.scrollTo({ top: 0, behavior: "smooth" });
-          }}
-          to="/sale"
-          className="categories__item"
-        >
-          <div className="categories__item__img">
-            <img src={salecate} alt="fashion_style" />
-          </div>
-          <div className="categories__item__name">Sale</div>
-        </Link>
+        {categories?.map((category) => (
+          <Link
+            onClick={() => {
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }}
+            to={`/${category.name}`}
+            className="categories__item"
+            key={category._id}
+          >
+            <div className="categories__item__img">
+              <img src={category.img} alt="fashion_style" />
+            </div>
+            <div className="categories__item__name">{category.name}</div>
+          </Link>
+        ))}
       </div>
       <div className="cate__line" />
       <div className="sale__banner">
