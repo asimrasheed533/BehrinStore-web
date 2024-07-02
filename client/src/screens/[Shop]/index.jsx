@@ -13,7 +13,7 @@ export default function Shop() {
   const { data } = useQuery("/products");
   console.log("data", data);
   useLayoutEffect(() => {
-    setFilterdata(data.filter((item) => item.category === state.id));
+    setFilterdata(data?.filter((item) => item.category === state.id));
   }, [data, state.id]);
   console.log("filterdata", filterdata);
   return (
@@ -116,6 +116,7 @@ export default function Shop() {
         <div className="shop__products__items">
           {filterdata?.map((item) => (
             <ProductCard item={item} key={item.id} />
+            
           ))}
         </div>
       </div>
@@ -123,6 +124,7 @@ export default function Shop() {
   );
 }
 function ProductCard({ item }) {
+  console.log("item", item);
   return (
     <Link
       onClick={() => {

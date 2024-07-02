@@ -16,17 +16,20 @@ export default function Detail() {
         <div className="detial__container__col__mobile">
           <img
             className="detial__container__col__main__image__mobile"
-            src={state.images[0]}
+            src={state.img}
             alt="product men"
           />
         </div>
         <div className="detial__container__col">
           <div className="deatail__imgs__wraper">
-            {state.images.map((img, index) => (
+            {/* {state.images.map((img, index) => (
               <div key={index} className="deatail__imgs__entry">
                 <img src={img} alt="women" />
               </div>
-            ))}
+            ))} */}
+             <div  className="deatail__imgs__entry">
+                <img src={state.img} alt="women" />
+              </div>
           </div>
           <div className="detail__content">
             <div className="detail__content__heading">Description</div>
@@ -47,7 +50,7 @@ export default function Detail() {
         <div className="detial__container__col">
           <img
             className="detial__container__col__main__image"
-            src={state.images[0]}
+            src={state.img}
             alt="product men"
           />
         </div>
