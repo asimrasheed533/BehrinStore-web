@@ -123,7 +123,7 @@ export default function Detail() {
               dispatch(
                 addToCart({
                   id: state.id,
-                  img: state.images[0],
+                  img: state.img,
                   size: size,
                   name: state.title,
                   price: state.price,
