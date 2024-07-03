@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { removeToCart } from "../features/cartSlice";
-import { useDispatch } from "react-redux";
 export default function Cart() {
   const navigate = useNavigate();
 
