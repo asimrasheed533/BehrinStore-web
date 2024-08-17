@@ -44,7 +44,7 @@ export default function ProductEdit() {
 
   function handleSubmit(e) {
     console.log("submitting");
-    console.log("subit data", {
+    console.log("submit data", {
       name,
       brand,
       description,

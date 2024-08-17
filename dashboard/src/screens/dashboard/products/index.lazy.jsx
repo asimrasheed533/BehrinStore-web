@@ -23,7 +23,7 @@ export default function Products() {
   const [query, setQuery] = useState("");
 
   const filter = useCallback((products) => {
-    return products.filter((product) => {
+    return products?.filter((product) => {
       return (
         product.name.toLowerCase().includes(query.toLowerCase()) ||
         product.price.toString().includes(query) ||
@@ -53,18 +53,18 @@ export default function Products() {
           <div className="container__main__content__listing__table__header__entry">
             Status
           </div>
+          <div className="container__main__content__listing__table__header__entry">
+            Type
+          </div>
 
           <div className="container__main__content__listing__table__header__entry">
             Image
           </div>
           <div className="container__main__content__listing__table__header__entry">
-            Name
+            Title
           </div>
           <div className="container__main__content__listing__table__header__entry">
             Price
-          </div>
-          <div className="container__main__content__listing__table__header__entry">
-            Brand
           </div>
 
           <div className="container__main__content__listing__table__header__entry">
@@ -132,6 +132,35 @@ function TableEntry({ product, getData }) {
             });
         }}
       />
+      <TableEntryStatus
+        defaultValue={{
+          value: product.type,
+          label: product.type,
+        }}
+        options={[
+          {
+            value: "product",
+            label: "product",
+          },
+          {
+            value: "featured",
+            label: "featured",
+          },
+          {
+            value: "latest",
+            label: "latest",
+          },
+        ]}
+        onChange={(e) => {
+          axios
+            .put(`products/${product._id}`, {
+              type: e.value,
+            })
+            .then(() => {
+              getData();
+            });
+        }}
+      />
 
       <TableEntryImage src={product?.img} />
       <TableEntryText className="container__main__content__listing__table__content__list__entry">
@@ -139,9 +168,6 @@ function TableEntry({ product, getData }) {
       </TableEntryText>
       <TableEntryText className="container__main__content__listing__table__content__list__entry">
         {product.price}
-      </TableEntryText>
-      <TableEntryText className="container__main__content__listing__table__content__list__entry">
-        {product.brand}
       </TableEntryText>
 
       <TableEntryText className="container__main__content__listing__table__content__list__entry">

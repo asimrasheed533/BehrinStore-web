@@ -4,7 +4,6 @@ import {
   TableEntryImage,
   TableEntryText,
 } from "components";
-import { useEffect, useState } from "react";
 
 import { Link } from "react-router-dom";
 import axios from "../../../utils/axios";
@@ -15,7 +14,6 @@ import Loading from "../../../layouts/loading";
 export default function categories() {
   const location = useLocation();
   const { data: category, isLoading: loading, mutate } = useQuery("categories");
-
   return (
     <div className="container__main__content__listing">
       <div className="container__main__content__listing__header">
@@ -56,7 +54,7 @@ export default function categories() {
   );
 }
 
-function TableEntry({ item }) {
+function TableEntry({ item, getData }) {
   return (
     <div className="container__main__content__listing__table__content__list">
       <div className="container__main__content__listing__table__content__list__entry">

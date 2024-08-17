@@ -29,6 +29,7 @@ export default function ProductAdd() {
         category: category.value,
         img: image,
         price,
+        isActive: true,
       })
       .then((res) => {
         alert("Product added successfully");
@@ -51,8 +52,8 @@ export default function ProductAdd() {
           />
           <Input
             type="text"
-            label="Brand"
-            placeholder="Enter Brand"
+            label="Title"
+            placeholder="Enter Title"
             value={brand}
             onChange={(e) => setBrand(e.target.value)}
           />
@@ -87,12 +88,12 @@ export default function ProductAdd() {
             <img src={image} alt="Upload Icon" />
             <label
               className="popup__wrapper__card__header__svg"
-              htmlFor="image-ipload"
+              htmlFor="image-upload"
             >
               <input
                 type="file"
                 accept="image/*"
-                id="image-ipload"
+                id="image-upload"
                 onChange={(e) => {
                   const file = e.target.files[0];
 
