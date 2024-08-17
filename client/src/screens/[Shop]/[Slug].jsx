@@ -21,15 +21,15 @@ export default function Detail() {
           />
         </div>
         <div className="detial__container__col">
-          <div className="deatail__imgs__wraper">
+          <div className="deatail__imgs__warper">
             {/* {state.images.map((img, index) => (
               <div key={index} className="deatail__imgs__entry">
                 <img src={img} alt="women" />
               </div>
             ))} */}
-             <div  className="deatail__imgs__entry">
-                <img src={state.img} alt="women" />
-              </div>
+            <div className="deatail__imgs__entry">
+              <img src={state.img} alt="women" />
+            </div>
           </div>
           <div className="detail__content">
             <div className="detail__content__heading">Description</div>
@@ -62,7 +62,7 @@ export default function Detail() {
             <div className="detial__price__free">FREE DELIVERY</div>
           </div>
           <div className="detail__size__title">Size</div>
-          <div className="detail__size__wraper">
+          <div className="detail__size__warper">
             <button
               onClick={() => setSize("XS")}
               className={`detail__size__entry ${

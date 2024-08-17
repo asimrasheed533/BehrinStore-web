@@ -42,7 +42,7 @@ export default function Shop() {
         )}
       </div>
       <div className="shop__products__container">
-        <div className="shop__products__filter__wraper">
+        <div className="shop__products__filter__warper">
           <div className="shop__filter__heading">
             Total Products: <span>{filterdata?.length}</span>
           </div>
@@ -116,7 +116,6 @@ export default function Shop() {
         <div className="shop__products__items">
           {filterdata?.map((item) => (
             <ProductCard item={item} key={item.id} />
-            
           ))}
         </div>
       </div>

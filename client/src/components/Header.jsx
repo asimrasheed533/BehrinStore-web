@@ -48,7 +48,7 @@ export default function Header() {
             </svg>
           </button>
           {isOpen ? (
-            <div className="header__menu__wraper">
+            <div className="header__menu__warper">
               <NavLink
                 to="/men"
                 onClick={() => {

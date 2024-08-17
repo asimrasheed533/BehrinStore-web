@@ -35,10 +35,10 @@ export default function Index() {
       <div className="sale__banner">
         <img src={salebanner} alt="fashionstyle" />
       </div>
-      {/* //new arival */}
-      <div className="arival__container">
-        <div className="arival__heading">New Arrivals</div>
-        <div className="item__container__wraper">
+      {/* //new arrival */}
+      <div className="arrival__container">
+        <div className="arrival__heading">New Arrivals</div>
+        <div className="item__container__warper">
           <ProductCard pr1={pr1} />
           <ProductCard pr1={pr2} />
           <ProductCard pr1={pr3} />
