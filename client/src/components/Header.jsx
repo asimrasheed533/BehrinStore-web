@@ -3,7 +3,7 @@ import ClickAwayListener from "react-click-away-listener";
 import { NavLink, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 export default function Header() {
-  const [isOpen, setisOpen] = useState(false);
+  const [isOpen, setIsOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const totalQuantity = useSelector((state) => state.cart.totalQuantity);
 
@@ -21,12 +21,12 @@ export default function Header() {
     <>
       <ClickAwayListener
         onClickAway={() => {
-          setisOpen(false);
+          setIsOpen(false);
         }}
       >
         <div className="header__container">
           <button
-            onClick={() => setisOpen(!isOpen)}
+            onClick={() => setIsOpen(!isOpen)}
             className="header__container__menu__icon"
           >
             <svg
@@ -52,7 +52,7 @@ export default function Header() {
               <NavLink
                 to="/men"
                 onClick={() => {
-                  setisOpen(false);
+                  setIsOpen(false);
                 }}
                 className="header__container__menu__entry"
               >
@@ -61,7 +61,7 @@ export default function Header() {
               <NavLink
                 to="/women"
                 onClick={() => {
-                  setisOpen(false);
+                  setIsOpen(false);
                 }}
                 className="header__container__menu__entry"
               >
@@ -70,7 +70,7 @@ export default function Header() {
               <NavLink
                 to="/sale"
                 onClick={() => {
-                  setisOpen(false);
+                  setIsOpen(false);
                 }}
                 className="header__container__menu__entry"
               >

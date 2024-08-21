@@ -8,14 +8,14 @@ export default function Shop() {
   const { pathname, state } = useLocation();
 
   const path = pathname.split("/")[1];
-  const [isactive, setIsactive] = useState(0);
-  const [filterdata, setFilterdata] = useState(null);
+  const [isActive, setIsActive] = useState(0);
+  const [filterData, setFilterData] = useState(null);
   const { data } = useQuery("/products");
   console.log("data", data);
   useLayoutEffect(() => {
-    setFilterdata(data?.filter((item) => item.category === state.id));
+    setFilterData(data?.filter((item) => item.category === state.id));
   }, [data, state.id]);
-  console.log("filterdata", filterdata);
+  console.log("filterData", filterData);
   return (
     <>
       <div className="shop__main__banner">
@@ -44,61 +44,61 @@ export default function Shop() {
       <div className="shop__products__container">
         <div className="shop__products__filter__warper">
           <div className="shop__filter__heading">
-            Total Products: <span>{filterdata?.length}</span>
+            Total Products: <span>{filterData?.length}</span>
           </div>
           <div className="shop__filter__items">
             <button
               className={`shop__filter__item ${
-                isactive === 0 && "shop__filter__item__active"
+                isActive === 0 && "shop__filter__item__active"
               }`}
               onClick={() => {
-                setIsactive(0);
-                const sortedData = [...filterdata];
+                setIsActive(0);
+                const sortedData = [...filterData];
                 sortedData.sort(
                   (a, b) => new Date(b.published_at) - new Date(a.published_at)
                 );
-                setFilterdata(sortedData);
+                setFilterData(sortedData);
               }}
             >
               Newest
             </button>
             <button
               className={`shop__filter__item ${
-                isactive === 1 && "shop__filter__item__active"
+                isActive === 1 && "shop__filter__item__active"
               }`}
               onClick={() => {
-                setIsactive(1);
-                const sortedData = [...filterdata];
+                setIsActive(1);
+                const sortedData = [...filterData];
                 sortedData.sort(
                   (a, b) => new Date(a.published_at) - new Date(b.published_at)
                 );
-                setFilterdata(sortedData);
+                setFilterData(sortedData);
               }}
             >
               Oldest
             </button>
             <button
               className={`shop__filter__item ${
-                isactive === 3 && "shop__filter__item__active"
+                isActive === 3 && "shop__filter__item__active"
               }`}
               onClick={() => {
-                setIsactive(3);
-                const sortedData = [...filterdata];
+                setIsActive(3);
+                const sortedData = [...filterData];
                 sortedData.sort((a, b) => a.price - b.price);
-                setFilterdata(sortedData);
+                setFilterData(sortedData);
               }}
             >
               Small to heigh Price
             </button>
             <button
               className={`shop__filter__item ${
-                isactive === 4 && "shop__filter__item__active"
+                isActive === 4 && "shop__filter__item__active"
               }`}
               onClick={() => {
-                setIsactive(4);
-                const sortedData = [...filterdata];
+                setIsActive(4);
+                const sortedData = [...filterData];
                 sortedData.sort((a, b) => b.price - a.price);
-                setFilterdata(sortedData);
+                setFilterData(sortedData);
               }}
             >
               Heigh to Samall Price
@@ -114,7 +114,7 @@ export default function Shop() {
           </div> */}
         </div>
         <div className="shop__products__items">
-          {filterdata?.map((item) => (
+          {filterData?.map((item) => (
             <ProductCard item={item} key={item.id} />
           ))}
         </div>
