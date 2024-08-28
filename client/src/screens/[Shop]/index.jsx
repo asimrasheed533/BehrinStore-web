@@ -15,7 +15,7 @@ export default function Shop() {
   useLayoutEffect(() => {
     setFilterData(data?.filter((item) => item.category === state.id));
   }, [data, state.id]);
-  console.log("filterData", filterData);
+
   return (
     <>
       <div className="shop__main__banner">
@@ -47,36 +47,6 @@ export default function Shop() {
             Total Products: <span>{filterData?.length}</span>
           </div>
           <div className="shop__filter__items">
-            <button
-              className={`shop__filter__item ${
-                isActive === 0 && "shop__filter__item__active"
-              }`}
-              onClick={() => {
-                setIsActive(0);
-                const sortedData = [...filterData];
-                sortedData.sort(
-                  (a, b) => new Date(b.published_at) - new Date(a.published_at)
-                );
-                setFilterData(sortedData);
-              }}
-            >
-              Newest
-            </button>
-            <button
-              className={`shop__filter__item ${
-                isActive === 1 && "shop__filter__item__active"
-              }`}
-              onClick={() => {
-                setIsActive(1);
-                const sortedData = [...filterData];
-                sortedData.sort(
-                  (a, b) => new Date(a.published_at) - new Date(b.published_at)
-                );
-                setFilterData(sortedData);
-              }}
-            >
-              Oldest
-            </button>
             <button
               className={`shop__filter__item ${
                 isActive === 3 && "shop__filter__item__active"
