@@ -12,22 +12,22 @@ export default function Detail() {
 
   return (
     <>
-      <div className="detial__container">
-        <div className="detial__container__col__mobile">
+      <div className="detail__container">
+        <div className="detail__container__col__mobile">
           <img
-            className="detial__container__col__main__image__mobile"
+            className="detail__container__col__main__image__mobile"
             src={state.img}
             alt="product men"
           />
         </div>
-        <div className="detial__container__col">
-          <div className="deatail__imgs__warper">
+        <div className="detail__container__col">
+          <div className="detail__img__warper">
             {/* {state.images.map((img, index) => (
-              <div key={index} className="deatail__imgs__entry">
+              <div key={index} className="detail__img__entry">
                 <img src={img} alt="women" />
               </div>
             ))} */}
-            <div className="deatail__imgs__entry">
+            <div className="detail__img__entry">
               <img src={state.img} alt="women" />
             </div>
           </div>
@@ -47,19 +47,19 @@ export default function Detail() {
             </div>
           </div>
         </div>
-        <div className="detial__container__col">
+        <div className="detail__container__col">
           <img
-            className="detial__container__col__main__image"
+            className="detail__container__col__main__image"
             src={state.img}
             alt="product men"
           />
         </div>
 
-        <div className="detial__container__col">
-          <div className="detial__container__name">{state.title}</div>
-          <div className="detial__price__entry">
-            <div className="detial__price">Rs.{state.price}</div>
-            <div className="detial__price__free">FREE DELIVERY</div>
+        <div className="detail__container__col">
+          <div className="detail__container__name">{state.title}</div>
+          <div className="detail__price__entry">
+            <div className="detail__price">Rs.{state.price}</div>
+            <div className="detail__price__free">FREE DELIVERY</div>
           </div>
           <div className="detail__size__title">Size</div>
           <div className="detail__size__warper">
@@ -119,18 +119,23 @@ export default function Detail() {
             </div>
           </div>
           <button
-            onClick={() =>
+            onClick={() => {
+              const productExist = cart.some((item) => item.id === state._id);
+              if (productExist) {
+                alert("product already add");
+              }
               dispatch(
                 addToCart({
-                  id: state.id,
+                  id: state._id,
                   img: state.img,
                   size: size,
                   name: state.title,
                   price: state.price,
                   quantity: quantity,
                 })
-              )
-            }
+              );
+              alert("Add TO Cart");
+            }}
             className="add__cart__btn"
             disabled={!size}
           >

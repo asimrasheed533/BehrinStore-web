@@ -54,9 +54,6 @@ export default function orders() {
           <div className="container__main__content__listing__table__header__entry">
             Phone No.
           </div>
-          <div className="container__main__content__listing__table__header__entry">
-            Items
-          </div>
         </div>
         <div className="container__main__content__listing__table__content">
           {loading ? (
@@ -98,7 +95,6 @@ function TableEntry({ item, getData }) {
       <TableEntryText>{item?.email}</TableEntryText>
       <TableEntryText>{item?.firstName}</TableEntryText>
       <TableEntryText>{item?.number}</TableEntryText>
-      <TableEntryText>6</TableEntryText>
     </div>
   );
 }

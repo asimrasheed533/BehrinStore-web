@@ -56,10 +56,12 @@ export default function Cart() {
             </div>
           ) : null}
           <div className="sub__total">
-            <div className="sub__total__heaidng">Subtotal</div>
-            <div className="sub__total__price">Rs:15,190</div>
+            <div className="sub__total__heading">Subtotal</div>
+            <div className="sub__total__price">
+              Rs:{Number(totalPrice).toLocaleString()}
+            </div>
           </div>
-          <div className="sub__total__subheaidng">
+          <div className="sub__total__subheading">
             Taxes and shipping calculated at checkout
           </div>
           <Link to="/" className="sub__total__btn">
@@ -103,8 +105,8 @@ function CartItem({ cart }) {
       </div>
       <div className="cart__container__left__item__col">
         {/* <div className="cart__container__left__item__col__price">
-          Rs.999f049
-        </div> */}
+            Rs.{cart.quantity}
+          </div> */}
         <div
           onClick={() => dispatch(removeToCart(cart))}
           className="trach__item"
