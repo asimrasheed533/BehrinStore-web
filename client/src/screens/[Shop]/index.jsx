@@ -6,15 +6,19 @@ import useQuery from "../../utils/useQuery";
 
 export default function Shop() {
   const { pathname, state } = useLocation();
-
+  console.log("state", state);
   const path = pathname.split("/")[1];
   const [isActive, setIsActive] = useState(0);
   const [filterData, setFilterData] = useState(null);
   const { data } = useQuery("/products");
   console.log("data", data);
   useLayoutEffect(() => {
-    setFilterData(data?.filter((item) => item.category === state.id));
-  }, [data, state.id]);
+    if (state && state._id) {
+      setFilterData(data?.filter((item) => item?.category === state._id));
+    } else {
+      setFilterData(data);
+    }
+  }, [data, state]);
 
   return (
     <>
@@ -71,21 +75,13 @@ export default function Shop() {
                 setFilterData(sortedData);
               }}
             >
-              Heigh to Samall Price
+              Heigh to Small Price
             </button>
           </div>
-          {/* <div className="shop__price__range">
-            <div className="shop__price__range__heading">Price Range</div>
-            <div className="price__entry">
-              <div className="price__entry__text">0 Min</div>
-              <div className="price__entry__text">40000 Max</div>
-            </div>
-            <input className="shop__price__range__input" type="range" />
-          </div> */}
         </div>
         <div className="shop__products__items">
           {filterData?.map((item) => (
-            <ProductCard item={item} key={item.id} />
+            <ProductCard item={item} key={item._id} />
           ))}
         </div>
       </div>
@@ -93,7 +89,6 @@ export default function Shop() {
   );
 }
 function ProductCard({ item }) {
-  console.log("item", item);
   return (
     <Link
       onClick={() => {
