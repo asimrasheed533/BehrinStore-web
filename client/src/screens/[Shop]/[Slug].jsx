@@ -31,7 +31,7 @@ export default function Detail() {
               <img src={state.img} alt="women" />
             </div>
           </div>
-          <div className="detail__content">
+          {/* <div className="detail__content">
             <div className="detail__content__heading">Description</div>
             <div className="detail__content__entry">Kurta</div>
             <div className="detail__content__entry">Dyed kurta</div>
@@ -45,7 +45,7 @@ export default function Detail() {
             <div className="detail__content__entry">
               <span>Code:</span> P8949KR-SLS-RBL
             </div>
-          </div>
+          </div> */}
         </div>
         <div className="detail__container__col">
           <img
@@ -56,7 +56,8 @@ export default function Detail() {
         </div>
 
         <div className="detail__container__col">
-          <div className="detail__container__name">{state.title}</div>
+          <div className="detail__price__free">Name</div>
+          <div className="detail__container__name">{state.name}</div>
           <div className="detail__price__entry">
             <div className="detail__price">Rs.{state.price}</div>
             <div className="detail__price__free">FREE DELIVERY</div>
@@ -142,11 +143,7 @@ export default function Detail() {
             ADD TO CADT
           </button>
           <div className="disclaimer__title">Disclaimer</div>
-          <div className="disclaimer__detail">
-            Actual colors of the product may vary from the colors being
-            displayed on your device.olors of the product may vary from the
-            colors being displayed on your device.
-          </div>
+          <div className="disclaimer__detail">{state.description}</div>
         </div>
       </div>
     </>

@@ -73,7 +73,6 @@ function TableEntry({ item, getData }) {
   return (
     <div className="container__main__content__listing__table__content__list">
       <div className="container__main__content__listing__table__content__list__entry">
-        <TableEntryViewButton />
         <TableEntryDeleteButton
           onClick={() => {
             axios.delete(`orders/${item?._id}`).then(() => {
@@ -87,7 +86,7 @@ function TableEntry({ item, getData }) {
         style={{ gap: 10, flexWrap: "wrap" }}
       >
         <Avatar
-          src={item.products[0].image}
+          src={item.products[0].img}
           className="container__main__content__listing__table__content__list__entry__img"
         />
       </TableEntryImage>
