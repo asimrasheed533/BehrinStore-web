@@ -44,7 +44,7 @@ export default function categories() {
           {loading ? (
             <Loading dashboard />
           ) : (
-            category.map((item) => (
+            category?.map((item) => (
               <TableEntry item={item} key={item._id} getData={mutate} />
             ))
           )}

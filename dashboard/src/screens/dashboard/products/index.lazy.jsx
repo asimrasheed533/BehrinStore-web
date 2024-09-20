@@ -81,7 +81,7 @@ export default function Products() {
           {loading ? (
             <Loading dashboard />
           ) : (
-            filter(products).map((product) => (
+            filter(products)?.map((product) => (
               <TableEntry
                 key={product._id}
                 product={product}

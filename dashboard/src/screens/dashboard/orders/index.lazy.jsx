@@ -59,7 +59,7 @@ export default function orders() {
           {loading ? (
             <Loading dashboard />
           ) : (
-            order.map((item) => (
+            order?.map((item) => (
               <TableEntry item={item} key={item._id} getData={mutate} />
             ))
           )}
